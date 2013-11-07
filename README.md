@@ -1,7 +1,7 @@
 Pelican Case Comparison Tool
 ============================
 
-Finding the right size pelican case is a royal pita since all product photos are scalled to the same size.
+Finding the right size pelican case is a royal pita since all product photos are scaled to the same size.
 I find this tool useful, ymmv.
 
 
