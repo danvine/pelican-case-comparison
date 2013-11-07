@@ -1,0 +1,73 @@
+
+  <script src="/thingiview.js/javascripts/Three.js"></script>
+  <script src="/thingiview.js/javascripts/plane.js"></script>
+  <script src="/thingiview.js/javascripts/thingiview.js"></script>
+
+  <script>
+    window.onload = function() {
+      thingiurlbase = "/thingiview.js/javascripts";
+      thingiview = new Thingiview("viewer");
+      thingiview.setObjectColor('#C0D8F0');
+      thingiview.initScene();
+
+      thingiview.setObjectColor('#666666');
+      thingiview.setBackgroundColor('#eeeeee')
+      thingiview.loadSTL("/stl/all-binary.stl");
+    }    
+  </script>
+</head>
+<body>
+
+<div id="viewer" style="width:100%;height:400px; margin: 25px 0px;"></div>
+
+<style type="text/css">
+
+.case .lid {
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center; 
+  background: #666;
+  font-size: 80%;
+}
+.case .body {
+	background: #333; 
+}
+.case a {
+	color: #FC9A18;
+	text-shadow: 0px 1px 0px #000;
+	text-decoration: none;
+	display: block;
+}
+</style>
+
+<table class='table'>
+<thead>
+  <tr>
+    <th>Product Shot</th>
+    <th>Relative Scale</th>
+    <th>Model</th>
+    <th>Length</th>
+    <th>Width</th>
+    <th>Depth</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<% @products.each do |product| %>
+<tr>
+  <td><img src='http://www.pelican.com/cases/cases_<%= product[:model] %>_flash/v1.jpg' style='max-width: 150px;'/></td>
+  <td>
+  <div class='case' ><a href='http://www.amazon.com/s/?&field-keywords=<%= product[:label] %>'><div class='lid' style='width: <%= product[:length].to_i * 3 %>px; height: <%= product[:width].to_i * 3 %>px'><%= product[:model] %></div></a>
+  <div class='body' style='width: <%= product[:length].to_i * 3 %>px; height: <%= product[:height].to_i * 3 %>px'></div>
+  </td>
+  <td nowrap><%= product[:label].to_s.gsub('Pelican ','') %></td>
+  <td><%= product[:length] %></td>
+  <td><%= product[:width] %></td>
+  <td><%= product[:height] %></td>
+  <td><a href='http://www.pelican.com/oem/cases_detail.php?Case=<%= product[:model] %>'>Detail</a></td>
+  <td><a href='http://www.pelican.com/oem/cad/<%= product[:model] %>/<%= product[:model] %>_pdf.zip'>CAD</a></td>
+  <td><a href='http://www.amazon.com/s/?&field-keywords=pelican%20<%= product[:model] %>'>Amazon</a></td>
+</tr>
+<% end %>
+</table>
